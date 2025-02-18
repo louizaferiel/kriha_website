@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A propos de Kriha</title>
+    <!-- Lien vers ton fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="a-propos-page" >
+    <header class="header-menu">
+        <!-- Logo -->
+        <div class="logo-container">  
+            <img class="logo" alt="Logo" src="images/krihalogo.png" width="181" height="31">
+        </div>
+        
+        <!-- Déposer une annonce -->
+        <a class="menu-link" href="/deposer-une-annonce">
+            <i class="fas fa-plus-square"></i>
+            Déposer une annonce
+        </a>
+        <!-- Voir le annonces-->
+        <a class="menu-link" href="/annonces">
+            <i class="fas fa-bullhorn"></i>
+            Voir les Annonces 
+        </a>
+        <!-- Rechercher sur kriha -->
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher sur Kriha">
+            <button>
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Mes recherches -->
+        <a class="menu-link" href="/my-searches">
+            <i class="fas fa-history"></i>
+            Mes recherches
+        </a>
+
+        <!-- Favoris -->
+        <a class="menu-link" href="/favorites">
+            <i class="fas fa-heart"></i>
+            Favoris
+        </a>
+
+        <!-- Messages -->
+        <a class="menu-link" href="/messages">
+            <i class="fas fa-envelope"></i>
+            Messages
+        </a>
+        <a class="menu-link" href="/a_propos.html">
+            <i class="fas fa-address-card"></i>
+            A propos de Kriha
+        </a>
+        <a class="menu-link" href="/category">
+            <i class="fas fa-puzzle-piece"></i>
+            Catégories
+        </a>
+        <!-- Se connecter -->
+        <a class="menu-link" href="/login">
+            <i class="fas fa-user"></i>
+            Se connecter | S'inscrire
+        </a>
+        <a>
+            <i class="fas fa-times" onclick="closemenu()"></i>
+        </a>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
+    </header>
+    <section class="section">
+        <div class="content-box">
+            <h1>Notre Histoire</h1>
+            <p style="--i:1">L'aventure Kriha a commencé avec une idée simple mais puissante : rendre la location accessible à tous, partout, et à tout moment.</p>
+            <p style="--i:2">Nous avons constaté que de nombreux objets restaient inutilisés chez les uns, alors que d'autres en avaient besoin. Cette observation nous a conduits à créer une plateforme innovante qui transforme la façon dont nous consommons.</p>
+            <p style="--i:3">Kriha est bien plus qu’une plateforme de location : c’est une solution pratique et économique pour répondre à des besoins urgents, même en dehors des horaires traditionnels. Besoin d’un outil de bricolage un dimanche après-midi ? D’une tenue chic pour une soirée de dernière minute ? Kriha est là pour vous, 24h/24 et 7j/7, même lorsque les boutiques sont fermées.</p>
+            <p style="--i:4">En encourageant le partage et la réutilisation, nous avons créé une communauté solidaire où chacun peut gagner de l’argent en louant ses biens inutilisés, tout en aidant les autres à accéder à ce dont ils ont besoin, quand ils en ont besoin.</p>
+            <p style="--i:5"> Aujourd’hui, Kriha est devenu un mouvement qui encourage l’économie circulaire, réduit le gaspillage et rapproche les gens. Nous sommes fiers de compter une communauté grandissante d’utilisateurs qui partagent notre vision d’un avenir plus durable et solidaire </p>
+            <p style="--i:6">Rejoignez-nous dans cette aventure et découvrez comment Kriha transforme la location en une expérience simple, économique et accessible à tous.</p>
+            <h1>Notre Mission</h1>
+            <p style="--i:1">Chez Kriha, notre mission est de révolutionner la location de biens en offrant une plateforme simple et intuitive qui profite à tous. Nous permettons aux propriétaires de gagner de l’argent en louant leurs biens, tout en aidant les locataires à faire des économies en choisissant la location plutôt que l’achat.</p>
+            <p style="--i:2">Grâce à Kriha, nos utilisateurs gagnent du temps et de l’espace en accédant facilement aux objets dont ils ont besoin, pour une durée limitée et sans engagement. En favorisant l’économie circulaire, nous contribuons à un futur plus écoresponsable, en réduisant le gaspillage et l’impact environnemental des achats inutiles</p>
+            <h1> Nos Valeurs</h1>
+            <p style="--i:1">
+                Chez Kriha, nos valeurs sont le fondement de tout ce que nous faisons. 
+                Elles guident nos actions,
+                nos décisions et notre engagement envers nos utilisateurs et la planète.   
+            </p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-title">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="value-name">Collaboration</h3>
+                    </div>
+                    <p class="value-description">
+                        Nous croyons en la puissance du partage et de l'entraide. 
+                        En connectant propriétaires et locataires, nous créons une communauté 
+                        solidaire où chacun peut bénéficier des ressources disponibles.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-title">
+                        <div class="value-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="value-name">Innovation</h3>
+                    </div>
+                    <p class="value-description">
+                        Nous sommes constamment à la recherche de nouvelles façons d'améliorer 
+                        notre plateforme pour répondre aux besoins de nos utilisateurs. 
+                        Notre objectif est de rendre la location simple, rapide et accessible à tous.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-title">
+                        <div class="value-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="value-name">Responsabilité</h3>
+                    </div>
+                    <p class="value-description">
+                        Nous nous engageons à avoir un impact positif sur la société et l'environnement. 
+                        En favorisant l'économie circulaire, nous réduisons le gaspillage et encourageons 
+                        une consommation plus durable.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-title">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="value-name">Transparence</h3>
+                    </div>
+                    <p class="value-description">
+                        Nous croyons en des relations honnêtes et claires avec nos utilisateurs et partenaires. 
+                        Chaque interaction sur Kriha est basée sur la confiance et la transparence.
+                    </p>
+                </div>
+                <div class="value-card">
+                    <div class="value-title">
+                        <div class="value-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="value-name">Accessibilité</h3>
+                    </div>
+                    <p class="value-description">
+                        Nous voulons rendre la location accessible à tous, partout. 
+                        Que vous soyez en Algérie ou ailleurs dans le monde, 
+                        Kriha est là pour vous simplifier la vie.
+                    </p>
+                </div>
+            </div>
+
+            <div class="engagement-section">
+                <h2>Notre Engagement Eco-Responsable</h2>
+    
+                <p>
+                    Chez Kriha, nous croyons en un futur durable où la 
+                    consommation responsable est au cœur de nos actions quotidiennes. 
+                    En choisissant de louer plutôt qu’acheter, vous participez activement à 
+                    l’économie circulaire, réduisant ainsi le gaspillage des ressources et
+                    l’empreinte carbone liée à la production de nouveaux biens.
+                </p>
+                <p>
+                    Chaque bien loué sur notre plateforme est une opportunité de réduire 
+                    l’impact environnemental des achats inutiles. En encourageant le partage et 
+                    la réutilisation, nous contribuons à un monde plus responsable, 
+                    où chacun peut agir pour la planète tout en améliorant son quotidien.
+                </p>
+                <p>
+                    Ensemble, nous pouvons construire un avenir où la consommation est 
+                    respectueuse des ressources naturelles et où la location devient un mode de vie 
+                    durable et bénéfique pour tous.
+                </p>
+            </div>
+        </div>
+    </section>   
+   
+    <!--les avantages de kriha-->
+    <div id="avantages" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="animate-title">Les avantages de Kriha</h1>
+                <div class="title-underline"></div>
+            </div>
+    
+            <!-- Section Locataires -->
+            <div class="advantages-section">
+                <h2 class="subtitle">Pour les locataires</h2>
+                <p class="section-intro">
+                    Kriha est un site web proposant une alternative à l'achat en permettant de louer des articles
+                    ponctuels (outils, vêtements, électroménager, etc.), afin d'éviter les dépenses inutiles et de 
+                    réduire le gaspillage
+                </p>
+    
+                <div class="tab-container">
+                    <div class="tab-title">
+                        <p class="tab-links active-link" onclick="opentab('economie')">
+                            <i class="fas fa-piggy-bank"></i>
+                            Économies garanties
+                        </p>
+                        <p class="tab-links" onclick="opentab('acces')">
+                            <i class="fas fa-rocket"></i>
+                            Accès simplifié
+                        </p>
+                        <p class="tab-links" onclick="opentab('Flexibilité')">
+                            <i class="fas fa-clock"></i>
+                            Flexibilité
+                        </p>
+                        <p class="tab-links" onclick="opentab('besoin')">
+                            <i class="fas fa-comments"></i>
+                            Exprimez vos besoins
+                        </p>
+                        <p class="tab-links" onclick="opentab('eco')">
+                            <i class="fas fa-leaf"></i>
+                            Engagement écoresponsable
+                        </p>
+                    </div>
+                    <div class="tab-content-wrapper">
+                        <div class="tab-contents active-tab" id="economie">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-piggy-bank"></i>
+                                </div>
+                                <h3>Économies garanties</h3>
+                                <p>Louez au lieu d'acheter et accédez à une large gamme de produits à des prix imbattables.</p>
+                            </div>
+                        </div>
+    
+                        <div class="tab-contents" id="acces">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3>Accès simplifié</h3>
+                                <p>Trouvez ce dont vous avez besoin en quelques clics grâce à notre plateforme intuitive et à notre moteur de recherche puissant.</p>
+                            </div>
+                        </div>
+                        <!-- Répéter le même pattern pour les autres onglets -->
+                        <div class="tab-contents" id="Flexibilité">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h3>Flexibilité</h3>
+                                <p>Louez des objets pour la durée qui vous convient, que ce soit pour quelques heures, quelques jours ou plusieurs semaines.</p>
+                            </div>
+                        </div>
+                        <div class="tab-contents" id="besoin">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <h3>Exprimez vos besoins</h3>
+                                <p>
+                                    Postez une annonce pour rechercher un objet spécifique et laissez les propriétaires vous contacter.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-contents" id="eco">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h3>Engagement écoresponsable</h3>
+                                <p>
+                                    Contribuez à un avenir durable en réduisant la consommation de biens neufs et en participant à l’économie circulaire
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Section Propriétaires -->
+            <div class="advantages-section proprietaires">
+                <h2 class="subtitle">Pour les propriétaires</h2>
+                
+                <div class="tab-container">
+                    <div class="tab-title">
+                        <p class="tab-links active-link" onclick="opentab('revenus')">
+                            <i class="fas fa-coins"></i>
+                            Générez des revenus
+                        </p>
+                        <p class="tab-links" onclick="opentab('total')">
+                            <i class="fas fa-calendar-alt"></i>
+                            Flexibilité totale
+                        </p>
+                        <p class="tab-links" onclick="opentab('securite')">
+                            <i class="fa-solid fa-lock"></i>
+                            Sécurité avant tout
+                        </p>
+                        <p class="tab-links" onclick="opentab('demande')">
+                            <i class="fa-solid fa-hand-point-up"></i>
+                            Trouvez des demandes
+                        </p>
+                        <p class="tab-links" onclick="opentab('gage')">
+                            <i class="fas fa-leaf"></i>
+                            Engagement écoresponsable
+                        </p>
+                        <!-- Répéter pour les autres onglets -->
+                    </div>
+    
+                    <div class="tab-content-wrapper">
+                        <div class="tab-contents active-tab" id="revenus">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-coins"></i>
+                                </div>
+                                <h3>Générez des revenus</h3>
+                                <p>Transformez vos biens inutilisés en source de revenus en les louant à notre communauté.</p>
+                            </div>
+                        </div>
+                        <div class="tab-contents active-tab" id="total">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <h3>Flexibilité totale </h3>
+                                <p>Fixez vos propres tarifs et disponibilités, sans engagement à long terme.
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Répéter pour les autres contenus -->
+                        <div class="tab-contents active-tab" id="securite">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-lock"></i>
+                                </div>
+                                <h3>Sécurité avant tout  </h3>
+                                <p>Profitez de paiements sécurisés et d’un système de vérification des utilisateurs pour une expérience sans stress.
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-contents active-tab" id="demande">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fa-solid fa-hand-point-up"></i>>
+                                </div>
+                                <h3>Trouvez des demandes </h3>
+                                <p>Répondez aux annonces des locataires et louez vos biens plus rapidement.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="tab-contents active-tab" id="gage">
+                            <div class="content-card">
+                                <div class="card-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <h3> Engagement écoresponsable </h3>
+                                <p>Donnez une seconde vie à vos objets et participez à la réduction des déchets et de l’impact environnemental.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+        <style>
+        .section {
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+    
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255,0,79,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+    
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+    
+        .animate-title {
+            font-size: 3em;
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+    
+        .title-underline {
+            width: 80px;
+            height: 4px;
+            background: #ff004f;
+            margin: 0 auto;
+            transition: width 0.3s ease;
+        }
+    
+        .section-header:hover .title-underline {
+            width: 150px;
+        }
+    
+        .section-intro {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            text-align: center;
+            color: #fff;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+    
+        .advantages-section {
+            margin-bottom: 80px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+    
+        .tab-container {
+            margin-top: 30px;
+        }
+    
+        .tab-title {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+    
+        .tab-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+    
+        .tab-links i {
+            font-size: 1.2em;
+            color: #ff004f;
+            transition: transform 0.3s ease;
+        }
+    
+        .tab-links:hover {
+            background: rgba(255,0,79,0.2);
+            transform: translateY(-3px);
+        }
+    
+        .tab-links:hover i {
+            transform: rotate(360deg);
+        }
+    
+        .tab-links.active-link {
+            background: #ff004f;
+            color: #fff;
+        }
+    
+        .tab-links.active-link i {
+            color: #fff;
+        }
+    
+        .content-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+    
+        .content-card:hover {
+            transform: translateY(-5px);
+        }
+    
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: #ff004f;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+    
+        .card-icon i {
+            font-size: 30px;
+            color: #fff;
+        }
+    
+        .content-card h3 {
+            color: #ff004f;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+    
+        .content-card p {
+            color: #fff;
+            line-height: 1.6;
+        }
+    
+        @media (max-width: 768px) {
+            .tab-title {
+                flex-direction: column;
+            }
+            
+            .tab-links {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .advantages-section {
+                padding: 20px;
+            }
+        }
+        </style>
+    
+        <script>
+        function opentab(tabname) {
+            const tablinks = document.getElementsByClassName("tab-links");
+            const tabcontents = document.getElementsByClassName("tab-contents");
+            
+            Array.from(tablinks).forEach(link => {
+                link.classList.remove("active-link");
+            });
+            
+            Array.from(tabcontents).forEach(content => {
+                content.classList.remove("active-tab");
+            });
+            
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+        </script>
+    </div>
+    <section class="join-section">
+        <div class="join-container">
+            <div class="join-header">
+                <h1>Rejoignez-Nous</h1>
+            </div>
+            
+            <div class="join-intro">
+                <p>Ensemble, nous pouvons construire un avenir où la consommation est respectueuse 
+                des ressources naturelles et où la location devient un mode de vie durable et bénéfique pour tous.</p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 class="audience-title">Pour les Particuliers</h3>
+                    <p class="audience-description">
+                        Louez ce dont vous avez besoin ou générez des revenus en mettant 
+                        vos biens inutilisés à disposition.
+                    </p>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="audience-title">Pour les Entreprises</h3>
+                    <p class="audience-description">
+                        Collaborez avec nous pour promouvoir une consommation responsable 
+                        et atteindre un public engagé.
+                    </p>
+                </div>
+
+                <div class="audience-card">
+                    <div class="audience-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="audience-title">Pour les Investisseurs</h3>
+                    <p class="audience-description">
+                        Participez à une aventure innovante qui révolutionne la location 
+                        et l'économie circulaire.
+                    </p>
+                </div>
+            </div>
+
+            <div class="action-section">
+                <h2 class="action-title">Ensemble, agissons pour :</h2>
+                <div class="action-grid">
+                    <div class="action-item">
+                        <i class="fas fa-recycle"></i>
+                        <span>Réduire le gaspillage en donnant une seconde vie aux objets</span>
+                    </div>
+                    <div class="action-item">
+                        <i class="fas fa-globe"></i>
+                        <span>Encourager l'économie circulaire pour un impact positif sur la planète</span>
+                    </div>
+                    <div class="action-item">
+                        <i class="fas fa-users"></i>
+                        <span>Créer une communauté solidaire où chacun peut partager, louer et économiser</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <p style="color: #fff; margin-bottom: 30px; font-size: 1.2em;">
+                    Rejoignez Kriha dès aujourd'hui et faites partie de cette révolution de la location.
+                    Que vous soyez propriétaire, locataire ou partenaire, votre contribution compte.
+                </p>
+                <a href="#" class="cta-button">Rejoindre l'aventure</a>
+            </div>
+        </div>
+    </section>
+    <div class="copyright">
+        <p> &copy; 2024 Kriha. Made with <i class="fa-solid fa-heart"></i> All rights reserved</p>
+    </div>
+</html>

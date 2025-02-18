@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- ID Client Google Sign-In -->
+    <meta name="google-signin-client_id" content="8120037831-gk5tjqj3v4mt4svlquk1brg7q1c4hh3g.apps.googleusercontent.com">
+    <title>Kriha.</title>
+    <!-- Lien vers ton fichier CSS externe -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Icônes FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- 🚀 Firebase : Nécessaire pour l'inscription avec Google et téléphone -->
+    <!-- Configuration Firebase -->
+    <script src="firebase-config.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</head>
+<!-- Firebase script-->
+<script type="module">
+    // 🔥 Importation des modules Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, setDoc, doc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js";
+    import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+    // 🔥 Initialisation de Firebase
+    const firebaseConfig = {
+        apiKey: "AIzaSyDPhp78Po7B5vHZMmW_RH060MUIqANz0Eg",
+        authDomain: "kriha-89f91.firebaseapp.com",
+        projectId: "kriha-89f91",
+        storageBucket: "kriha-89f91.appspot.com",
+        messagingSenderId: "8120037831",
+        appId: "1:8120037831:web:9dbfc4ae3b4b85bb28a9e2",
+        measurementId: "G-XWEFYYLB0F"
+    };
+
+    const app = initializeApp(firebaseConfig); // ✅ Initialisation correcte
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+    const storage = getStorage(app);
+
+    console.log("🔥 Firebase initialisé avec succès !");
+
+    // 🔹 Connexion avec Google et enregistrement de l'utilisateur
+    window.signInWithGoogle = async function() {
+        try {
+            const provider = new GoogleAuthProvider();
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            // 🔥 Ajouter l'utilisateur à Firestore
+            await setDoc(doc(db, "users", user.uid), {
+                name: user.displayName,
+                email: user.email,
+                profilePic: user.photoURL
+            });
+
+            alert("✅ Connexion réussie !");
+        } catch (error) {
+            console.error("❌ Erreur Google:", error);
+            alert("❌ Erreur Google: " + error.message);
+        }
+    };
+    // 🔥 Vérifier si l'utilisateur est connecté
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            console.log("✅ Utilisateur connecté :", user.displayName);
+            document.getElementById("userStatus").innerText = `Connecté en tant que ${user.displayName}`;
+        } else {
+            console.log("⚠️ Aucun utilisateur connecté");
+            document.getElementById("userStatus").innerText = "Non connecté";
+        }
+    });
+    // 🔹 Ajouter un avis utilisateur
+    document.querySelector('form[name="submit-to-google-sheet"]').addEventListener('submit', async function(event) {
+        event.preventDefault();
+
+        const name = this.querySelector('input[name="Name"]').value;
+        const email = this.querySelector('input[name="EMAIL"]').value;
+        const message = this.querySelector('textarea[name="Message"]').value;
+
+        try {
+            await addDoc(collection(db, "avis"), {
+                name: name,
+                email: email,
+                message: message,
+                timestamp: new Date()
+            });
+
+            alert("✅ Avis enregistré !");
+            this.reset();
+        } catch (error) {
+            console.error("❌ Erreur :", error);
+            alert("❌ Erreur lors de l'ajout de l'avis !");
+        }
+    });
+
+    // 🔹 Ajouter un article
+    document.getElementById("addArticleForm").addEventListener("submit", async function(event) {
+        event.preventDefault();
+        const user = auth.currentUser; // Vérifie si l'utilisateur est connecté
+        if (!user) {
+        alert("⚠️ Vous devez être connecté pour ajouter un article !");
+        signInWithGoogle(); // Redirige vers la connexion Google
+        return;
+    }
+        const name = document.getElementById("articleName").value;
+        const price = document.getElementById("articlePrice").value;
+        const description = document.getElementById("articleDescription").value;
+        const file = document.getElementById("articleImage").files[0];
+
+        try {
+            const storageRef = ref(storage, `articles/${file.name}`);
+            await uploadBytes(storageRef, file);
+            const imageUrl = await getDownloadURL(storageRef);
+
+            await addDoc(collection(db, "articles"), {
+                name: name,
+                price: price,
+                description: description,
+                imageUrl: imageUrl,
+                timestamp: new Date()
+            });
+
+            alert("✅ Article ajouté !");
+            this.reset();
+        } catch (error) {
+            console.error("❌ Erreur :", error);
+            alert("❌ Erreur lors de l'ajout de l'article !");
+        }
+    });
+
+</script>
+
+
+
+<body>
+    <header class="header-menu">
+        <!-- Logo -->
+    <div class="logo-container">  
+        <img class="logo" alt="Logo" src="images/krihalogo.png" width="181" height="31">
+    </div>
+        
+
+        <!-- Déposer une annonce -->
+        <a class="menu-link" href="/deposer-une-annonce">
+            <i class="fas fa-plus-square"></i>
+            Déposer une annonce
+        </a>
+        <!-- Voir le annonces-->
+        <a class="menu-link" href="/annonces">
+            <i class="fas fa-bullhorn"></i>
+            Voir les Annonces 
+        </a>
+        <!-- Rechercher sur kriha -->
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher sur Kriha">
+            <button>
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <!-- Mes recherches -->
+        <a class="menu-link" href="/my-searches">
+            <i class="fas fa-history"></i>
+            Mes recherches
+        </a>
+
+        <!-- Favoris -->
+        <a class="menu-link" href="/favorites">
+            <i class="fas fa-heart"></i>
+            Favoris
+        </a>
+
+        <!-- Messages -->
+        <a class="menu-link" href="/messages">
+            <i class="fas fa-envelope"></i>
+            Messages
+        </a>
+
+        
+        <a class="menu-link" href="/a_propos.html">
+            <i class="fas fa-address-card"></i>
+            A propos de Kriha
+        </a>
+        <a class="menu-link" href="/category">
+            <i class="fas fa-puzzle-piece"></i>
+            Catégories
+        </a>
+        <!-- Se connecter -->
+        <a class="menu-link" href="/login">
+            <i class="fas fa-user"></i>
+            Se connecter | S'inscrire
+        </a>
+        <a>
+            <i class="fas fa-times" onclick="closemenu()"></i>
+        </a>
+        <i class="fas fa-bars" onclick="openmenu()"></i>
+    </header>
+    <!--logo en K-->
+    
+    <!--slogan-->
+<div id ="slogan">
+
+    <div class="container">
+        
+    <!--<div class="frame7">-->
+        <!-- Ajoutez ici le logo ou tout autre contenu -->
+        <!--<img src="images/logo_kerya_base.svg" alt="Logo" style="width: 100%; height: auto;">
+    </div> -->
+    <div class="header-text">
+        
+        <div>
+        <h2>Louer pour economiser </h2>
+        <h2> Louer pour  <span class="rose">gagner </span></h2>
+        </div>  
+        <img src="images/logo_svg.svg" alt="logo_kriha" >
+    </div>
+    
+</div>       
+
+    </div>
+    <!--a propos de Kriha -->
+    
+<!-- Services -->
+<div id="services">
+    <div class="container">
+        <div class="serviceslist">
+            <!-- Colonne 1 -->
+            <div class="service-box">
+                <h2 onclick="window.location.href='mettre-en-location.html'" class="clickable">Mettre En Location</h2>
+                <p>Générez des revenus en louant vos biens en toute simplicité.</p>
+                <a href="a_propos.html" class="underline-effect">Connaitre Les Avantages</a>
+            </div>
+            <!-- Colonne 2 -->
+            <div class="service-box">
+                <h2 onclick="window.location.href='demander-location.html'" class="clickable">Demander Une Location</h2>
+                <p>Louez ce dont vous avez besoin, quand vous en avez besoin.</p>
+                <a href="a_propos.html" class="underline-effect">Connaitre Les Avantages</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio -->
+<div id="portfolio">
+    <div class="container">
+        <h6 class="subtitle"> Catégories Populaires En Location </h6> <!-- Titre de la section -->
+
+        <!-- Catégories visibles au départ -->
+        <div class="worklist">
+            <div class="work"><img src="images/mode.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/vehicules.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/loisirs.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/bricolage.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+        </div>
+
+        <!-- Catégories cachées qui apparaîtront après un clic -->
+        <div class="worklist hidden" id="moreCategories">
+            <div class="work"><img src="images/sorties.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/evennements.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/santé.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/immobilier.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+            <div class="work"><img src="images/autre.png"><div class="layer"><a href="#"><i class="fa-solid fa-arrow-up-right-from-square"></i></a></div></div>
+        </div>
+
+        <!-- Bouton pour afficher plus de catégories -->
+        <a  class="btn" id="showMoreBtn">Voir plus</a>
+    </div>
+</div>
+
+<!--inscription avec google et numero de telephone-->
+<div id="inscription">
+    <!-- Connexion avec Google -->
+    <div class="auth-section">
+        <h3>Connexion avec Google</h3>
+        <button onclick="signInWithGoogle()" class="btn btn2">
+        <i class="fab fa-google"></i> Se connecter avec Google
+        </button>
+        <div id="google-user-info"></div>
+    </div>
+    <!-- Connexion avec le téléphone -->
+    <div class="auth-section">
+        <h3>Connexion avec un numéro de téléphone</h3>
+        <div class="phone-input-container">
+            <input 
+                type="tel" 
+                id="phoneNumber" 
+                placeholder="+213 5 51 37 36 53" 
+                class="auth-input"
+            />
+            <button onclick="sendVerificationCode()" class="btn btn2">
+                Envoyer le code
+            </button>
+        </div>
+    </div>
+    <!-- Conteneur pour reCAPTCHA -->
+    <div id="recaptcha-container"></div>
+    <!-- Champ pour le code de vérification -->
+    <div class="verification-container" style="display: none;">
+        <input 
+            type="text" 
+            id="verificationCode" 
+            placeholder="Code reçu par SMS" 
+            class="auth-input" 
+        />
+        <button onclick="verifyCode()" class="btn btn2">
+            Vérifier le code
+        </button>
+    </div>
+    <!-- Message de statut -->
+    <div id="auth-status" class="auth-status"></div>
+</div>
+<div class="article">
+    <h2>Ajouter un article en location</h2>
+    <form id="addArticleForm">
+    <input type="text" id="articleName" placeholder="Nom de l'article" required>
+    <input type="number" id="articlePrice" placeholder="Prix en DZD" required>
+    <textarea id="articleDescription" placeholder="Description"></textarea>
+    <input type="file" id="articleImage" accept="image/*" required>
+    <button type="submit">Ajouter l'article</button>
+</form>
+
+</div>
+<!--contact-->
+<div id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="contactleft">
+                <h1 class="subtitle">contacts</h1>
+                <p> <i class="fa-solid fa-paper-plane"></i>algeriekriha@gmail.com</p>
+                <!--<p> <i class="fa-solid fa-phone"></i>+213658582839</p>-->
+                <div class="social-icons">
+                    <a ><i class="fa-brands fa-facebook"></i></a>
+                    <a ><i class="fa-brands fa-twitter-square"></i></a>
+                    <a ><i class="fa-brands fa-instagram"></i></a>
+                    <a ><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+                <a  href="images/conditions d'utilisations.docx.pdf" download class="btn btn2">Régles de confidentialité</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p> &copy; 2024 Kriha. Made with <i class="fa-solid fa-heart"></i> All rights reserved</p>
+    </div>
+</div>
+<!--
+    <div>
+    <p id="userStatus">Vérification de l'utilisateur...</p>
+    <button onclick="signInWithGoogle()">Se connecter avec Google</button>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links"); // Sélectionne les liens des onglets
+        var tabcontents = document.getElementsByClassName("tab-contents"); // Sélectionne le contenu des onglets
+        
+        function opentab(tabname) {
+            // Désactive tous les liens actifs
+            for (var tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            // Masque tous les contenus
+            for (var tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            // Active le lien cliqué et le contenu associé
+            event.currentTarget.classList.add("active-link"); 
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+-->
+    <!--responsive menu-->
+    <!--
+    <script>
+        var sidemenu=document.getElementById("sidemenu");
+        function openmenu(){
+            sidemenu.style.right="0";
+        }
+        function closemenu(){
+            sidemenu.style.right="-200px";
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyLXVW5vrnBhJEnn3c37zp4Kk3ZYKuJGik30PImcgZ73_g_lphiejYHy9wSQrEnQ-PFPg/exec'
+        const form = document.forms['submit-to-google-sheet']
+        form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        });
+    </script>
+    -->
+    <script>
+        // header scroll
+        document.addEventListener("scroll", function () {
+            const header = document.querySelector(".header-menu");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
+        });
+    </script>
+    </script>
+    <script>
+        document.getElementById("showMoreBtn").addEventListener("click", function(event) {
+            event.preventDefault(); // ✅ Bloque l'effet de remontée en haut de la page
+    
+            let moreCategories = document.getElementById("moreCategories");
+    
+            if (moreCategories.style.display === "none" || moreCategories.style.display === "") {
+                moreCategories.style.display = "grid"; // ✅ Afficher les nouvelles catégories
+                this.style.display = "none"; // ✅ Cacher le bouton après l'ajout
+            }
+        });
+    </script>
+    </div>
+    
+</body>
+</html>
